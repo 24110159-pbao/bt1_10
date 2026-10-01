@@ -347,7 +347,7 @@
                         <th>Tên sản phẩm</th>
                         <th>Danh mục</th>
                         <th>Giá</th>
-                        <th>Amount</th>
+                        <th>Tồn kho</th>
                         <th>Thao tác</th>
                     </tr>
                     </thead>
@@ -410,10 +410,10 @@
                                     </td>
 
 
-                                    <!-- Amount -->
+                                    <!-- Inventory -->
                                     <td>
                                         <span class="amount-badge">
-                                            ${p.amount}
+                                            ${p.stock != null ? p.stock : p.amount}
                                         </span>
                                     </td>
 

@@ -491,7 +491,7 @@
                             <div class="product-bottom">
 
                                 <span class="amount">
-                                    📦 Còn ${p.amount}
+                                    📦 Còn ${p.stock}
                                 </span>
 
                                 <a

@@ -156,6 +156,10 @@
                     Giỏ hàng
                 </a>
 
+                <a href="${pageContext.request.contextPath}/orders">
+                    Hóa đơn
+                </a>
+
                 <%
                     if (current.getRole() != null &&
                         "ADMIN".equalsIgnoreCase(

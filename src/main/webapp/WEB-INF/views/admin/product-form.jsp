@@ -473,7 +473,7 @@
                         Giá & Kho hàng
                     </div>
 
-                    <div class="form-grid three-columns">
+                    <div class="form-grid">
 
                         <div class="form-group">
                             <label for="price">
@@ -499,30 +499,8 @@
 
 
                         <div class="form-group">
-                            <label for="amount">
-                                Amount
-                                <span class="required">*</span>
-                            </label>
-
-                            <div class="number-input">
-                                <input
-                                    id="amount"
-                                    class="form-control"
-                                    type="number"
-                                    min="0"
-                                    name="amount"
-                                    value="${product.amount}"
-                                    placeholder="0"
-                                    required>
-
-                                <span class="input-unit">SL</span>
-                            </div>
-                        </div>
-
-
-                        <div class="form-group">
                             <label for="stock">
-                                Stock
+                                Số lượng tồn kho
                                 <span class="required">*</span>
                             </label>
 
@@ -533,11 +511,11 @@
                                     type="number"
                                     min="0"
                                     name="stock"
-                                    value="${product.stock}"
+                                    value="${product.stock != null ? product.stock : product.amount}"
                                     placeholder="0"
                                     required>
 
-                                <span class="input-unit">SP</span>
+                                <span class="input-unit">sản phẩm</span>
                             </div>
                         </div>
 

@@ -90,6 +90,7 @@ public class OrderService_24110159 {
                 em.persist(orderItem);
 
                 product.setStock(stock - quantity);
+                product.setAmount(stock - quantity);
                 total = total.add(lineTotal);
             }
 
@@ -118,6 +119,21 @@ public class OrderService_24110159 {
                     .setMaxResults(1)
                     .getResultList();
             return orders.isEmpty() ? null : orders.get(0);
+        } finally {
+            em.close();
+        }
+    }
+
+    public List<Order_24110159> findAllForUser(Integer userId) {
+        EntityManager em = JPAUtil_24110159.getEntityManager();
+        try {
+            return em.createQuery(
+                    "select distinct o from Order_24110159 o " +
+                            "left join fetch o.items " +
+                            "where o.user.userId = :userId order by o.orderDate desc",
+                    Order_24110159.class)
+                    .setParameter("userId", userId)
+                    .getResultList();
         } finally {
             em.close();
         }

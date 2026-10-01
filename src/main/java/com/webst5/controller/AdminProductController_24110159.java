@@ -82,7 +82,6 @@ public class AdminProductController_24110159 extends HttpServlet {
         p.setDescription(description);
 
         String rawPrice = req.getParameter("price");
-        String rawAmount = req.getParameter("amount");
         String rawStock = req.getParameter("stock");
         String rawCategoryId = req.getParameter("categoryId");
         String rawSellerId = req.getParameter("sellerId");
@@ -140,25 +139,7 @@ public class AdminProductController_24110159 extends HttpServlet {
             return;
         }
 
-        // 5. Validate Amount
-        Integer amount = null;
-        try {
-            if (rawAmount == null || rawAmount.trim().isEmpty()) {
-                forwardWithError(req, resp, p, "Vui lòng nhập số lượng (amount).");
-                return;
-            }
-            amount = Integer.valueOf(rawAmount.trim());
-            if (amount < 0) {
-                forwardWithError(req, resp, p, "Số lượng không được âm.");
-                return;
-            }
-            p.setAmount(amount);
-        } catch (NumberFormatException e) {
-            forwardWithError(req, resp, p, "Số lượng phải là số nguyên không âm.");
-            return;
-        }
-
-        // 6. Validate Stock
+        // 5. Validate inventory quantity
         Integer stock = null;
         try {
             if (rawStock == null || rawStock.trim().isEmpty()) {
@@ -171,12 +152,13 @@ public class AdminProductController_24110159 extends HttpServlet {
                 return;
             }
             p.setStock(stock);
+            p.setAmount(stock);
         } catch (NumberFormatException e) {
             forwardWithError(req, resp, p, "Số lượng tồn kho phải là số nguyên không âm.");
             return;
         }
 
-        // 7. Validate Category & Seller
+        // 6. Validate Category & Seller
         Integer categoryId = null;
         Integer sellerId = null;
         try {
@@ -214,7 +196,7 @@ public class AdminProductController_24110159 extends HttpServlet {
             em.close();
         }
 
-        // 8. Validate File Upload Image
+        // 7. Validate File Upload Image
         try {
             Part filePart = req.getPart("imagesFile");
             if (filePart != null && filePart.getSize() > 0 && filePart.getSubmittedFileName() != null && !filePart.getSubmittedFileName().isBlank()) {

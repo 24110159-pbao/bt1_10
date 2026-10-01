@@ -5,10 +5,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "Orders")
@@ -44,6 +46,9 @@ public class Order_24110159 {
     @Column(length = 30, nullable = false)
     private String status;
 
+    @OneToMany(mappedBy = "order")
+    private List<OrderItem_24110159> items;
+
     public String getOrderId() { return orderId; }
     public void setOrderId(String orderId) { this.orderId = orderId; }
     public User_24110159 getUser() { return user; }
@@ -64,4 +69,6 @@ public class Order_24110159 {
     public void setPaymentStatus(String paymentStatus) { this.paymentStatus = paymentStatus; }
     public String getStatus() { return status; }
     public void setStatus(String status) { this.status = status; }
+    public List<OrderItem_24110159> getItems() { return items; }
+    public void setItems(List<OrderItem_24110159> items) { this.items = items; }
 }
