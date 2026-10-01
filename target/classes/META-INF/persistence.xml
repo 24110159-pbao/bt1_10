@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence
+             https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
+             version="3.0">
+    <persistence-unit name="webst5PU" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+        <class>com.webst5.entity.UserRole_24110159</class>
+        <class>com.webst5.entity.Seller_24110159</class>
+        <class>com.webst5.entity.Category_24110159</class>
+        <class>com.webst5.entity.User_24110159</class>
+        <class>com.webst5.entity.Product_24110159</class>
+        <class>com.webst5.entity.Cart_24110159</class>
+        <class>com.webst5.entity.CartItem_24110159</class>
+        <class>com.webst5.entity.Order_24110159</class>
+        <class>com.webst5.entity.OrderItem_24110159</class>
+
+        <properties>
+            <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="jakarta.persistence.jdbc.url"
+                      value="jdbc:mysql://localhost:3306/webst5?useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=Asia/Ho_Chi_Minh"/>
+            <property name="jakarta.persistence.jdbc.user" value="root"/>
+            <property name="jakarta.persistence.jdbc.password" value="12345"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.show_sql" value="false"/>
+            <property name="hibernate.format_sql" value="true"/>
+        </properties>
+    </persistence-unit>
+</persistence>
