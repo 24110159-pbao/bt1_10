@@ -139,6 +139,26 @@ public class OrderService_24110159 {
         }
     }
 
+    public List<Order_24110159> findAllForUserByStatus(Integer userId, String status) {
+        if (status == null || status.isBlank()) {
+            return findAllForUser(userId);
+        }
+        EntityManager em = JPAUtil_24110159.getEntityManager();
+        try {
+            return em.createQuery(
+                    "select distinct o from Order_24110159 o " +
+                            "left join fetch o.items " +
+                            "where o.user.userId = :userId and o.status = :status " +
+                            "order by o.orderDate desc",
+                    Order_24110159.class)
+                    .setParameter("userId", userId)
+                    .setParameter("status", status)
+                    .getResultList();
+        } finally {
+            em.close();
+        }
+    }
+
     private BigDecimal toMoney(Float value) {
         if (value == null || value < 0) {
             throw new IllegalArgumentException("Giá sản phẩm không hợp lệ.");

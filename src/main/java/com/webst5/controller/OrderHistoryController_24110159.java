@@ -24,7 +24,11 @@ public class OrderHistoryController_24110159 extends HttpServlet {
             return;
         }
 
-        req.setAttribute("orders", orderService.findAllForUser(user.getUserId()));
+        String status = req.getParameter("status");
+        if (status != null) status = status.trim();
+
+        req.setAttribute("orders", orderService.findAllForUserByStatus(user.getUserId(), status));
+        req.setAttribute("currentStatus", status == null ? "" : status);
         req.getRequestDispatcher("/WEB-INF/views/orders.jsp").forward(req, resp);
     }
-}
+}
